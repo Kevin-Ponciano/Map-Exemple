@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  </head>
+  <style>
+    .p {
+      font-family: 'Lucida Console', 'Courier New', monospace;
+    }
+    #map1,
+    #map2 {
+      height: 444px;
+      /* The height is 400 pixels */
+      width: 392px;
+      /* The width is the width of the web page */
+    }
+    #leftbox {
+      float: left;
+      width: 25%;
+    }
+    #middlebox {
+      float: left;
+      width: 25%;
+    }
+    .rightbox {
+      float: left;
+      width: 50%;
+    }
+  </style>
+
+  <body>
+    <div>
+      <div id="leftbox">
+        <p>Vivian Coser Vitória - Mapa Estático (Imagem)</p>
+        <img
+          src="https://viviancoser.com/wp-content/uploads/2022/08/map_vix3.png"
+          alt=""
+        />
+      </div>
+      <div id="middlebox">
+        <p>Vivian Coser Vitória - Mapa EMBED (dinámico)</p>
+        <iframe
+          width="392"
+          height="444"
+          style="border: 0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg
+          &q='Vivian+Coser+Arquitetos+Associados'&zoom=19"
+        >
+        </iframe>
+      </div>
+      <div>
+        <p>Vivian Coser Vitória - StreetViwer (Personalizavel)</p>
+        <div id="map1"></div>
+      </div>
+    </div>
+    <script>
+      function initMap() {
+        initMap1();
+      }
+      function initMap1() {
+        var uluru = { lat: -20.29733077226668, lng: -40.294319359664776 };
+        var map_style = [
+          {
+            featureType: 'poi',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }],
+          },
+          { stylers: [{ saturation: -100 }] },
+        ];
+        var map_options = {
+          zoom: 18,
+          center: uluru,
+          styles: map_style,
+          mapTypeControl: false,
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        var map = new google.maps.Map(
+          document.getElementById('map1'),
+          map_options
+        );
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Vivian Coser',
+          optimized: false,
+          icon: 'https://viviancoser.com/wp-content/uploads/2020/11/vivian-coser-site-map-pin.svg',
+        });
+      }
+
+      window.initMap = initMap;
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    ></script>
+  </body>
+</html>
